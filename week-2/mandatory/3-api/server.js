@@ -3,20 +3,22 @@ const app = express();
 const { Pool }=require("pg");
 
 const pool = new Pool({
-    user: '',
+    user: 'postgres',
     host: 'localhost',
-    database: 'cyf_ecommerce',
-    password: '',
+    database: '',
+    password: 'passwordhere',
     port: 5432
 });
 
 app.get("/customers", (req, res)=>{
     pool.query("SELECT * FROM customers", (error, result)=>{
-        res.json(result.rows);
+       res.json(result.rows);
+       console.log("oshoiw", result.rows[0].i);
     })
 })
 
 app.get("/products", (req, res)=>{
+    console.log("Hello")
     pool.query("SELECT * FROM products", (error, result)=>{
         res.json(result.rows);
     })
@@ -29,4 +31,4 @@ app.get("/suppliers", (req, res)=>{
 })
 
 app.listen(3000, function (){
-    console.log("Hey there!")})
+    console.log("Hey there!!")})
